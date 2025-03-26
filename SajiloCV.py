@@ -15,7 +15,7 @@ import time
 import json
 import sys
 import math
-import pyautogui
+#import pyautogui
 
 
 class SajiloCV:
@@ -768,12 +768,12 @@ class SajiloCV:
             range = np.interp(length,[lmin,lmax],[min,max])
             return range
 
-    # Creating a class for hand tracking
+    ''''# Creating a class for hand tracking
     class AutoGUI:
             def __init__(self, outer_instance):
                 self.outer = outer_instance  # Reference to the outer class
 
-            ''' functions on volume control starts here '''
+            #functions on volume control starts here
             def increase_volume(self,steps=5):
                 for _ in range(steps):
                     pyautogui.press("volumeup")
@@ -788,4 +788,4 @@ class SajiloCV:
             # Mute/Unmute Volume
             def mute_volume(self):
                 pyautogui.press("volumemute")
-            ''' function on volume control ends here '''
+            function on volume control ends here '''
