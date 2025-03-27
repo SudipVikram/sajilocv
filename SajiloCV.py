@@ -15,6 +15,7 @@ import time
 import json
 import sys
 import math
+import os
 #import pyautogui
 
 
@@ -792,8 +793,11 @@ class SajiloCV:
         ''' function on hand positions ends here '''
     # Creating a class for tools
     class Tools:
-        def __init__(self, outer_instance):
+        def __init__(self, outer_instance,other_instance=None):
             self.outer = outer_instance # reference to the outer class
+            self.other_instance = other_instance # reference to hand tracking class
+            self.dir_path = ""  # path of the directory
+            self.overlay_list = []   # list to store images for overlays
 
         # finding the range of two numbers w.r.t. the object/finger position
         def find_range(self, length=100, min=150, max=400, lmin=20, lmax=100, order="ascending"):
@@ -830,6 +834,57 @@ class SajiloCV:
             elif order == "ascending":
                 range_val = np.interp(length, [lmin, lmax], [min, max])
             return range_val
+
+        # list out files from a directory
+        def print_dir_list(self, dir_path):
+            if not os.path.isdir(dir_path):
+                print(f"Error: '{dir_path}' is not a valid directory path.")
+                return
+            print("Files in directory:")
+            for file in os.listdir(dir_path):
+                print(file)
+
+        # return the list of files from a directory
+        def find_dir_list(self, dir_path):
+            if not os.path.isdir(dir_path):
+                print(f"Error: '{dir_path}' is not a valid directory path.")
+                return
+            self.dir_path = dir_path
+            return os.listdir(dir_path)
+
+        # load images from a directory into the program
+        def load_images_from_dir(self, dir_path):
+            if not os.path.isdir(dir_path):
+                print(f"Error: '{dir_path}' is not a valid directory path.")
+                return
+            self.dir_path = dir_path
+            imgList = os.listdir(dir_path)
+            self.overlay_list = []  # redeclaring to get rid of previous values
+            for indivImg in imgList:
+                if indivImg.endswith(".png") or indivImg.endswith(".jpg"):
+                    indivImg = cv2.imread(f'{dir_path}/{indivImg}')
+                    self.overlay_list.append(indivImg)
+                else:
+                    print(f"Skipping file '{indivImg}': File type not supported.")
+            return len(self.overlay_list)
+
+        # function to slice an image
+        def slice_image(self,img_num=0):
+            # storing the shapes
+            h, w, c = self.overlay_list[img_num].shape
+            self.other_instance.img[0:h,0:w] = self.overlay_list[img_num]
+
+
+        # save files from a directory
+        def save_files(self, filename="output.jpg"):
+            if not isinstance(filename, str):
+                print("Error: 'filename' must be a string.")
+                return
+            try:
+                cv2.imwrite(filename, self.outer.img)
+                print(f"Image saved as '{filename}'.")
+            except Exception as e:
+                print(f"Error saving file: {e}")
 
     ''''# Creating a class for hand tracking
     class AutoGUI:

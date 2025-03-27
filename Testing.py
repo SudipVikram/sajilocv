@@ -7,7 +7,8 @@ htracker = sajilo.HandTracking(sajilo)
 htracker.update_max_hands(2)
 
 # instantiating tools
-tools = sajilo.Tools(sajilo)
+tools = sajilo.Tools(sajilo,htracker)
+#tools = sajilo.Tools(sajilo)
 
 while True:
     htracker.track_hands()
@@ -26,5 +27,12 @@ while True:
         disp_range_val = tools.find_range(length, min=0, max=100, lmin=20, lmax=100, order="ascending")
         htracker.display_text(text=f"{int(disp_range_val)}%",org=(30,440),font="duplex", font_scale=1,color=(0,255,0),thickness=1)
 
+    # working with files in a dir
+    #tools.print_dir_list(dir_path="fingers")
+
+    #fileList = tools.find_dir_list(dir_path="fingers")
+    list_of_overlays = tools.load_images_from_dir(dir_path="fingers")
+    #print(list_of_overlays)
+    tools.slice_image(img_num=6)
 
     htracker.display_video()
