@@ -713,7 +713,7 @@ class SajiloCV:
             else:
                 cv2.rectangle(self.img, start, end, color, thickness)
 
-        # vertical slider in the image
+        # draw a vertical slider in the image
         def draw_vertical_slider(self,start=(50, 150),end=(85, 400),val=150, color=(0, 255, 0), thickness=2):
             # drawing the outer bar
             self.draw_rectangle(start,end,fill=False,color=color,thickness=thickness)
@@ -755,7 +755,7 @@ class SajiloCV:
             self.outer = outer_instance # reference to the outer class
 
         # finding the range of two numbers w.r.t. the object/finger position
-        def find_range(self, length=100, min=0, max=100, lmin=50, lmax=300):
+        def find_range(self, length=100, min=0, max=100, lmin=50, lmax=300, order=None):
             if length < 0:
                 print("Error: 'length' must be a positive integer.")
                 return
@@ -765,8 +765,11 @@ class SajiloCV:
             if min < 0:
                 print("Error: 'min' must be a positive integer.")
 
-            range = np.interp(length,[lmin,lmax],[min,max])
-            return range
+            if order == "inverted":
+                range_val = np.interp(length,[lmin,lmax],[max,min])
+            else:
+                range_val = np.interp(length, [lmin, lmax], [min, max])
+            return range_val
 
     ''''# Creating a class for hand tracking
     class AutoGUI:
