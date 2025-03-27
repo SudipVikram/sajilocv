@@ -24,7 +24,7 @@ while True:
     #hand_tracker.line_across_landmarks(landmark_ids=(4,8))
     #hand_tracker.get_landmarks_list()
 
-    hand_tracker.line_across_landmarks(landmark_ids=(4,8))
+    #hand_tracker.line_across_landmarks(landmark_ids=(4,8))
     #hand_tracker.line_across_landmarks(hand_no=1,landmark_ids=(4,8),color=(255,0,0))
 
     '''hand_tracker.line_across_landmarks(hand_no=0,landmark_ids=(4,8),color=(0,0,255),thickness=2,rcircle=10,center=True)
@@ -68,7 +68,7 @@ while True:
         print(f"Length2: {length2}")
         print(f"Range2: {range2}")'''
 
-    tools = sajilo_cv.Tools(sajilo_cv)
+    '''tools = sajilo_cv.Tools(sajilo_cv)
     length = hand_tracker.length_across_landmarks()
     if length:
         print(f"Length: {length}")
@@ -77,7 +77,7 @@ while True:
         #val = tools.find_range(range,min=400,max=150,lmin=30,lmax=150)
         #print(f"Val: {val}")
         #hand_tracker.draw_vertical_slider(val=val)
-        hand_tracker.draw_vertical_slider(val=range)
+        hand_tracker.draw_vertical_slider(val=range)'''
 
     '''hand_tracker.draw_rectangle(fill=False)
     tools = sajilo_cv.Tools(sajilo_cv)
@@ -89,6 +89,8 @@ while True:
         hand_tracker.draw_vertical_slider(val=range)'''
 
     #hand_tracker.draw_rectangle(fill=False)
+    #hand_tracker.center_across_landmarks(hand_no=0)
+    #hand_tracker.center_across_landmarks(hand_no=1,color=(255,0,0),rcircle=10)
 
     # bare essential - to display the video
     hand_tracker.display_video()

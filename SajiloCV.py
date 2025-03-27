@@ -708,6 +708,27 @@ class SajiloCV:
 
         # drawing a rectangle in the image
         def draw_rectangle(self,start=(50, 150),end=(85, 400),fill=False, color=(0, 255, 0), thickness=2):
+            # validation
+            # Validate 'start' and 'end'
+            if not isinstance(start, tuple) or not isinstance(end, tuple) or len(start) != 2 or len(end) != 2:
+                raise ValueError("Invalid inputs: 'start' and 'end' must be tuples of two integers (x, y).")
+            if not all(isinstance(coord, int) for coord in start + end):
+                raise ValueError("Invalid inputs: 'start' and 'end' must contain integer coordinates.")
+
+            # Validate 'fill'
+            if not isinstance(fill, bool):
+                raise ValueError("Invalid input: 'fill' must be a boolean.")
+
+            # Validate 'color'
+            if not isinstance(color, tuple) or len(color) != 3 or not all(
+                    isinstance(c, int) and 0 <= c <= 255 for c in color):
+                raise ValueError("Invalid input: 'color' must be a tuple of three integers between 0 and 255.")
+
+            # Validate 'thickness'
+            if not isinstance(thickness, int) or thickness < 0:
+                raise ValueError("Invalid input: 'thickness' must be a non-negative integer.")
+
+            # checking whether it is asking to fill the rectangle or not
             if fill:
                 cv2.rectangle(self.img, start, end, color, cv2.FILLED)
             else:
@@ -715,6 +736,26 @@ class SajiloCV:
 
         # draw a vertical slider in the image
         def draw_vertical_slider(self,start=(50, 150),end=(85, 400),val=150, color=(0, 255, 0), thickness=2):
+            # validating
+            # Validate 'start' and 'end'
+            if not isinstance(start, tuple) or not isinstance(end, tuple) or len(start) != 2 or len(end) != 2:
+                raise ValueError("Invalid inputs: 'start' and 'end' must be tuples of two integers (x, y).")
+            if not all(isinstance(coord, int) for coord in start + end):
+                raise ValueError("Invalid inputs: 'start' and 'end' must contain integer coordinates.")
+
+            # Validate 'val'
+            if not isinstance(val, (int, float)):
+                raise ValueError("Invalid input: 'val' must be an integer or a float.")
+
+            # Validate 'color'
+            if not isinstance(color, tuple) or len(color) != 3 or not all(
+                    isinstance(c, int) and 0 <= c <= 255 for c in color):
+                raise ValueError("Invalid input: 'color' must be a tuple of three integers between 0 and 255.")
+
+            # Validate 'thickness'
+            if not isinstance(thickness, int) or thickness <= 0:
+                raise ValueError("Invalid input: 'thickness' must be a positive integer.")
+
             # drawing the outer bar
             self.draw_rectangle(start,end,fill=False,color=color,thickness=thickness)
             # slider

@@ -15,6 +15,7 @@ while True:
     htracker.line_across_landmarks()
 
     # creating a slider
+    htracker.draw_rectangle(fill=False)
     length = htracker.length_across_landmarks()
     if length:
         range_val = tools.find_range(length,min=150,max=400,lmin=20,lmax=100,order="descending")
