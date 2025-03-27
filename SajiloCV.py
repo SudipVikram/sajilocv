@@ -83,6 +83,7 @@ class SajiloCV:
             self.imgRGB = None  # Initialize image storage
             self.results = None
             self.img = None
+            self.finger_tips = [4,8,12,16,20]
 
             self.pTime = 0 # previous time(initialized to 0)
 
@@ -790,6 +791,25 @@ class SajiloCV:
                 return lmsList
             else:
                 print("No hand landmarks detected.")
+
+        def determine_hand_position(self,hand_no=0):
+            # getting the hand position
+            lmList = self.find_hand_position(hand_no=0, draw=False)
+            if lmList and len(lmList) != 0:
+                fingers = []
+                # for detecting the thumb(since it is a special case). Right hand
+                if(lmList[self.finger_tips[0]][1] > lmList[self.finger_tips[0] - 1][1]):
+                    fingers.append(1)
+                else:
+                    fingers.append(0)
+                # for detecting the four fingers without the thumb
+                for id in range(1,5):
+                    if(lmList[self.finger_tips[id]][2] < lmList[self.finger_tips[id]-2][2]):
+                        fingers.append(1)
+                    else:
+                        fingers.append(0)
+                return fingers
+
         ''' function on hand positions ends here '''
     # Creating a class for tools
     class Tools:
@@ -870,10 +890,8 @@ class SajiloCV:
 
         # function to slice an image
         def slice_image(self,img_num=0):
-            # storing the shapes
             h, w, c = self.overlay_list[img_num].shape
             self.other_instance.img[0:h,0:w] = self.overlay_list[img_num]
-
 
         # save files from a directory
         def save_files(self, filename="output.jpg"):
