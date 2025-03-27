@@ -755,7 +755,7 @@ class SajiloCV:
             self.outer = outer_instance # reference to the outer class
 
         # finding the range of two numbers w.r.t. the object/finger position
-        def find_range(self, length=100, min=0, max=100, lmin=50, lmax=300, order=None):
+        def find_range(self, length=100, min=150, max=400, lmin=20, lmax=100, order="ascending"):
             if length < 0:
                 print("Error: 'length' must be a positive integer.")
                 return
@@ -764,10 +764,29 @@ class SajiloCV:
                 return
             if min < 0:
                 print("Error: 'min' must be a positive integer.")
+            if lmin > lmax:
+                print("Error: 'lmin' must be less than or equal to 'lmax'.")
+                return
+            if lmin < 0:
+                print("Error: 'lmin' must be a positive integer.")
+            # validating inputs
+            try:
+                # Validate 'order' - must be a non-empty string
+                if not isinstance(order, str) or order.strip() == "":
+                    raise ValueError("Invalid 'order': Must be a non-empty string.")
 
-            if order == "inverted":
+                # Validate 'min', 'max', 'lmin', 'lmax' - must all be int or float
+                for field, value in [("min", min), ("max", max), ("lmin", lmin), ("lmax", lmax)]:
+                    if not isinstance(value, (int, float)):
+                        raise ValueError(f"Invalid '{field}': Must be an integer or floating-point number.")
+                        return True
+            except ValueError as e:
+                print(f"Validation Error: {e}")
+                return False
+
+            if order == "descending":
                 range_val = np.interp(length,[lmin,lmax],[max,min])
-            else:
+            elif order == "ascending":
                 range_val = np.interp(length, [lmin, lmax], [min, max])
             return range_val
 

@@ -1,4 +1,3 @@
-from BareMinimum import tools
 from SajiloCV import *
 
 # creating an instance of everything
@@ -12,17 +11,17 @@ tools = sajilo.Tools(sajilo)
 
 while True:
     htracker.track_hands()
-    htracker.show_hand_connections()
+    #htracker.show_hand_connections()
+    htracker.line_across_landmarks()
 
     # creating a slider
     length = htracker.length_across_landmarks()
     if length:
-        range_val = tools.find_range(length,min=0,max=100,lmin=150,lmax=400,order="inverted")
-        upd_val = range_val + 400
-        #print(f"Length: {length}")
-        print(f"Range: {upd_val}")
-        print("hello Slacker")
-        htracker.draw_vertical_slider(val=upd_val)
+        range_val = tools.find_range(length,min=150,max=400,lmin=20,lmax=100,order="descending")
+        print(f"Length: {length}")
+        #range_val = 100 + range_val
+        print(f"Range: {range_val}")
+        htracker.draw_vertical_slider(val=range_val)
 
 
     htracker.display_video()
