@@ -23,6 +23,8 @@ while True:
         #range_val = 100 + range_val
         print(f"Range: {range_val}")
         htracker.draw_vertical_slider(val=range_val)
+        disp_range_val = tools.find_range(length, min=0, max=100, lmin=20, lmax=100, order="ascending")
+        htracker.display_text(text=f"{int(disp_range_val)}%",org=(30,440),font="duplex", font_scale=1,color=(0,255,0),thickness=1)
 
 
     htracker.display_video()
