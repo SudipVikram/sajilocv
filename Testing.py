@@ -43,11 +43,19 @@ while True:
     fingers = htracker.determine_hand_position()
     tools.load_images_from_dir(dir_path="fingers")
     if fingers:
-        #print(fingers)
+        print(fingers)
         thumb, index, middle, ring, pinky = fingers
-        if thumb == 1:
+        if fingers == [0,0,0,0,0]:
+            tools.slice_image(img_num=3)
+        elif fingers == [0,1,0,0,0]:
             tools.slice_image(img_num=0)
-        elif index == 1:
+        elif fingers == [0,1,1,0,0]:
+            tools.slice_image(img_num=4)
+        elif fingers == [0,1,1,1,0]:
+            tools.slice_image(img_num=2)
+        elif fingers == [0,1,1,1,1]:
             tools.slice_image(img_num=1)
+        elif fingers == [1,1,1,1,1]:
+            tools.slice_image(img_num=5)
 
     htracker.display_video()
