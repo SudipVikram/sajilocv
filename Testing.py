@@ -44,6 +44,7 @@ while True:
     tools.load_images_from_dir(dir_path="fingers")
     if fingers:
         print(fingers)
+        htracker.draw_rectangle(fill=True, color=(255, 255, 255),start=(147,215),end=(180,245))
         htracker.display_text(text="fingers:", org=(30, 240), font="simplex", font_scale=1, color=(255, 0, 0), thickness=2)
         thumb, index, middle, ring, pinky = fingers
         if fingers == [0,0,0,0,0]:
