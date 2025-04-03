@@ -44,18 +44,25 @@ while True:
     tools.load_images_from_dir(dir_path="fingers")
     if fingers:
         print(fingers)
+        htracker.display_text(text="fingers:", org=(30, 240), font="simplex", font_scale=1, color=(255, 0, 0), thickness=2)
         thumb, index, middle, ring, pinky = fingers
         if fingers == [0,0,0,0,0]:
-            tools.overlay_image(img_num=3)
+            tools.overlay_image(org=(10,10),img_num=3)
+            htracker.display_text(text="0",org=(150,240),font="duplex", font_scale=1,color=(0,255,0),thickness=2)
         elif fingers == [0,1,0,0,0]:
-            tools.overlay_image(img_num=0)
+            tools.overlay_image(org=(10,10),img_num=0)
+            htracker.display_text(text="1", org=(150, 240), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)
         elif fingers == [0,1,1,0,0]:
-            tools.overlay_image(img_num=4)
+            tools.overlay_image(org=(10,10),img_num=4)
+            htracker.display_text(text="2", org=(150, 240), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)
         elif fingers == [0,1,1,1,0]:
-            tools.overlay_image(img_num=2)
+            tools.overlay_image(org=(10,10),img_num=2)
+            htracker.display_text(text="3", org=(150, 240), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)
         elif fingers == [0,1,1,1,1]:
-            tools.overlay_image(img_num=1)
+            tools.overlay_image(org=(10,10),img_num=1)
+            htracker.display_text(text="4", org=(150, 240), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)
         elif fingers == [1,1,1,1,1]:
-            tools.overlay_image(img_num=5)
+            tools.overlay_image(org=(10,10),img_num=5)
+            htracker.display_text(text="5", org=(150, 240), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)
 
     htracker.display_video()

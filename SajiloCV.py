@@ -889,9 +889,13 @@ class SajiloCV:
             return len(self.overlay_list)
 
         # function to overlay an image
-        def overlay_image(self,img_num=0):
+        def overlay_image(self,org=(0,0),img_num=0):
+            x, y = org
             h, w, c = self.overlay_list[img_num].shape
-            self.other_instance.img[0:h,0:w] = self.overlay_list[img_num]
+            if x == 0 or y == 0:
+                self.other_instance.img[0:h,0:w] = self.overlay_list[img_num]
+            else:
+                self.other_instance.img[y:h+y,x:w+x] = self.overlay_list[img_num]
 
         # save files from a directory
         def save_files(self, filename="output.jpg"):
