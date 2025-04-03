@@ -46,16 +46,16 @@ while True:
         print(fingers)
         thumb, index, middle, ring, pinky = fingers
         if fingers == [0,0,0,0,0]:
-            tools.slice_image(img_num=3)
+            tools.overlay_image(img_num=3)
         elif fingers == [0,1,0,0,0]:
-            tools.slice_image(img_num=0)
+            tools.overlay_image(img_num=0)
         elif fingers == [0,1,1,0,0]:
-            tools.slice_image(img_num=4)
+            tools.overlay_image(img_num=4)
         elif fingers == [0,1,1,1,0]:
-            tools.slice_image(img_num=2)
+            tools.overlay_image(img_num=2)
         elif fingers == [0,1,1,1,1]:
-            tools.slice_image(img_num=1)
+            tools.overlay_image(img_num=1)
         elif fingers == [1,1,1,1,1]:
-            tools.slice_image(img_num=5)
+            tools.overlay_image(img_num=5)
 
     htracker.display_video()

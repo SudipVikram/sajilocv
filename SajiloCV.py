@@ -888,8 +888,8 @@ class SajiloCV:
                     print(f"Skipping file '{indivImg}': File type not supported.")
             return len(self.overlay_list)
 
-        # function to slice an image
-        def slice_image(self,img_num=0):
+        # function to overlay an image
+        def overlay_image(self,img_num=0):
             h, w, c = self.overlay_list[img_num].shape
             self.other_instance.img[0:h,0:w] = self.overlay_list[img_num]
 
