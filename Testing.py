@@ -4,6 +4,7 @@ from SajiloCV import *
 sajilo = SajiloCV()
 htracker = sajilo.HandTracking(sajilo)
 arduino = sajilo.Controller(sajilo,port="/dev/ttyACM0",baudrate=9600,timeout=1)
+#arduino = sajilo.Controller(sajilo,port="/dev/ttyUSB1",baudrate=9600,timeout=1)
 
 htracker.update_max_hands(1)
 
@@ -40,7 +41,7 @@ while True:
     #htracker.print_landmarks()
     #htracker.find_hand_position(draw=False)
 
-    ''' getting an image corresponding to the number of fingers 
+    ''' getting an image corresponding to the number of fingers '''
     fingers = htracker.determine_hand_position()
     tools.load_images_from_dir(dir_path="fingers")
     if fingers:
@@ -65,7 +66,7 @@ while True:
             htracker.display_text(text="4", org=(150, 240), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)
         elif fingers == [1,1,1,1,1]:
             tools.overlay_image(org=(10,10),img_num=5)
-            htracker.display_text(text="5", org=(150, 240), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)'''
+            htracker.display_text(text="5", org=(150, 240), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)
 
 
     ''' getting the position of the landmark
@@ -74,13 +75,13 @@ while True:
 
     print(f"Thumb tip: {thumb_tip}", f"Index tip: {index_tip}")'''
 
-    ''' sending serial data to arduino
+    ''' sending serial data to arduino '''
     fingers = htracker.determine_hand_position()
     if fingers:
         print(fingers)
-        arduino.send_serial_data(data=fingers)'''
+        arduino.send_serial_data(data=fingers)
 
-    ''' sending intensity data to arduino '''
+    ''' sending intensity data to arduino
     len = htracker.determine_hand_position()
     if len:
         htracker.draw_rectangle(fill=True, color=(255, 255, 255), start=(175, 13), end=(540, 45))
@@ -98,6 +99,6 @@ while True:
             print(f"Range: {rnge2}")
             htracker.display_text(text=f"{rnge2}", org=(178, 38), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)
 
-            arduino.send_serial_data(data=rnge2)
+            arduino.send_serial_data(data=rnge2)'''
 
     htracker.display_video()
