@@ -12,7 +12,7 @@ tools = sajilo.Tools(sajilo,htracker)
 
 while True:
     htracker.track_hands()
-    htracker.show_hand_connections()
+    #htracker.show_hand_connections()
     #htracker.line_across_landmarks()
 
     # creating a slider
@@ -39,7 +39,7 @@ while True:
     #htracker.print_landmarks()
     #htracker.find_hand_position(draw=False)
 
-    ''' getting an image corresponding to the number of fingers'''
+    ''' getting an image corresponding to the number of fingers
     fingers = htracker.determine_hand_position()
     tools.load_images_from_dir(dir_path="fingers")
     if fingers:
@@ -65,5 +65,10 @@ while True:
         elif fingers == [1,1,1,1,1]:
             tools.overlay_image(org=(10,10),img_num=5)
             htracker.display_text(text="5", org=(150, 240), font="duplex", font_scale=1, color=(0, 255, 0), thickness=2)
+        '''
+
+    ''' getting the position of the landmark '''
+    index_tip = htracker.find_landmark_position(hand_no=0,landmark_id=8,draw=True,color=(0,0,255))
+    thumb_tip = htracker.find_landmark_position(hand_no=0,landmark_id=4,draw=True)
 
     htracker.display_video()

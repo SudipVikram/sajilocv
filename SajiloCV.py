@@ -811,6 +811,18 @@ class SajiloCV:
                 return fingers
 
         ''' function on hand positions ends here '''
+
+        ''' function to find the landmark position starts here '''
+        def find_landmark_position(self, hand_no=0, landmark_id=0, draw=False, color=(255, 0, 0)):
+            lmList = self.find_hand_position(hand_no=hand_no,draw=False)
+            if lmList and len(lmList) > landmark_id:
+                id, xpos, ypos = lmList[landmark_id]
+                if draw:
+                    cv2.circle(self.img, (xpos, ypos), 5, color=color, thickness=cv2.FILLED)
+                return xpos, ypos
+            else:
+                return None, None
+        ''' function to find the landmark position ends here '''
     # Creating a class for tools
     class Tools:
         def __init__(self, outer_instance,other_instance=None):
