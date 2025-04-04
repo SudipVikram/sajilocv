@@ -16,6 +16,7 @@ import json
 import sys
 import math
 import os
+import serial
 #import pyautogui
 
 
@@ -823,6 +824,27 @@ class SajiloCV:
             else:
                 return None, None
         ''' function to find the landmark position ends here '''
+
+    ''' class for manipulating the controller '''
+    class Controller:
+        def __init__(self,outer_instance,port="COM0",baudrate=9600,timeout=None):
+            self.outer = outer_instance
+            self.port = port
+            self.baudrate = baudrate
+            self.timeout = timeout
+            self.conn = serial.Serial(port=self.port, baudrate=self.baudrate, timeout=self.timeout)
+            if self.conn:
+                time.sleep(2) # wait 2 secs for the serial connection to initialize
+            else:
+                raise Exception("Error: Unable to connect to the controller.")
+
+        ''' function to send serial data to arduino starts here '''
+        def send_serial_data(self,data=None):
+            if data is not None:
+                self.conn.write(bytes(data))
+            else:
+                self.conn.write(b'0')
+        ''' function to send serial data to arduino ends here '''
     # Creating a class for tools
     class Tools:
         def __init__(self, outer_instance,other_instance=None):
