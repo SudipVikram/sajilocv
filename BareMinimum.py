@@ -1,4 +1,4 @@
-from SajiloCV import SajiloCV
+from sajilocv import SajiloCV
 
 # creating an instance of SajiloBot
 sajilo_cv = SajiloCV()

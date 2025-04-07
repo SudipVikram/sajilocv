@@ -1,9 +1,9 @@
-from SajiloCV import *
+from sajilocv import *
 
 # creating an instance of everything
 sajilo = SajiloCV()
 htracker = sajilo.HandTracking(sajilo)
-arduino = sajilo.Controller(sajilo,port="/dev/ttyACM0",baudrate=9600,timeout=1)
+#arduino = sajilo.Controller(sajilo,port="/dev/ttyACM0",baudrate=9600,timeout=1)
 #arduino = sajilo.Controller(sajilo,port="/dev/ttyUSB1",baudrate=9600,timeout=1)
 
 htracker.update_max_hands(1)
@@ -79,7 +79,7 @@ while True:
     fingers = htracker.determine_hand_position()
     if fingers:
         print(fingers)
-        arduino.send_serial_data(data=fingers)
+        #arduino.send_serial_data(data=fingers)
 
     ''' sending intensity data to arduino
     len = htracker.determine_hand_position()
