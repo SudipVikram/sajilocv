@@ -22,6 +22,11 @@ game.create_enemy(image_path="eggs/duck.png", org=(400, 10))
 game2.create_enemy(image_path="eggs/duck.png", org=(400, 10))
 game3.create_enemy(image_path="eggs/duck.png", org=(400, 10))
 
+# working with sounds
+game.load_sound(sound_path="eggs/background.wav", type="background", volume=0.5)
+game.load_sound(sound_path="eggs/egg-in-basket.wav", type="collision", volume=0.5)
+game.load_sound(sound_path="eggs/egg-cracking.mp3", type="death", volume=0.5)
+
 
 # max hands to be tracked
 htracker.update_max_hands(1)    # setting it to one hand only

@@ -552,10 +552,10 @@ class sajilopygame:
     # display score
     def display_score(self,score=0):
         score = self.collision_count
-        score_font = pygame.font.SysFont("comicsansms", 20)
-        score_text = score_font.render("Score : " + str(score), True, (255, 255, 255))
+        score_font = pygame.font.SysFont("comicsansms", 40)
+        score_text = score_font.render("Score : " + str(score), True, (255, 0, 255))
         score_rect = score_text.get_rect()
-        score_rect.center = (self.wwidth/2-300, 40)
+        score_rect.center = (self.wwidth/2-300, 100)
         self.screen.blit(score_text, score_rect)
 
     # get score
