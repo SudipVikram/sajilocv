@@ -7,8 +7,8 @@ This is a basic working example of sajilocv's hand tracking. Just the bare minim
 from sajilocv import *
 
 # instantiating
-sajilo = SajiloCV()
-htracker = sajilo.HandTracking(sajilo)
+sajilo = sajilocv()
+htracker = sajilo.hand_tracking(sajilo)
 
 while True:
     # start tracking hands

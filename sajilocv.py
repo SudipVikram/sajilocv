@@ -20,7 +20,7 @@ import serial
 #import pyautogui
 
 
-class SajiloCV:
+class sajilocv:
     def __init__(self, config_path="config.json"):
         self.mp = mp  # Store MediaPipe module
         self.time = time  # Store Time module
@@ -66,16 +66,16 @@ class SajiloCV:
         return "MIT"
 
     def get_description(self):
-        return "A library for computer vision tasks"
+        return "A library for computer vision tasks written by Sudip Vikram Adhikari @ Beyond Apogee"
 
     def get_github_link(self):
-        return "https://github.com/BeyondApogee/SajiloCV"
+        return "https://github.com/SudipVikram/SajiloCV"
 
     def get_documentation_link(self):
-        return "https://github.com/BeyondApogee/SajiloCV/blob/main/README.md"
+        return "https://github.com/SudipVikram/SajiloCV/blob/main/README.md"
 
     # Creating a class for hand tracking
-    class HandTracking:
+    class hand_tracking:
         def __init__(self, outer_instance):
             self.outer = outer_instance  # Reference to the outer class
             self.cap = cv2.VideoCapture(self.outer.camera_index)  # Use user-defined camera
@@ -826,7 +826,7 @@ class SajiloCV:
         ''' function to find the landmark position ends here '''
 
     ''' class for manipulating the controller '''
-    class Controller:
+    class controller:
         def __init__(self,outer_instance,port="COM0",baudrate=9600,timeout=None):
             self.outer = outer_instance
             self.port = port
@@ -846,7 +846,7 @@ class SajiloCV:
                 self.conn.write(b'0')
         ''' function to send serial data to arduino ends here '''
     # Creating a class for tools
-    class Tools:
+    class tools:
         def __init__(self, outer_instance,other_instance=None):
             self.outer = outer_instance # reference to the outer class
             self.other_instance = other_instance # reference to hand tracking class

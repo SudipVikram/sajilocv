@@ -7,14 +7,14 @@ This example demonstrates how to count the number of fingers in a hand using saj
 from sajilocv import *
 
 # instantiating
-sajilo = SajiloCV()
-htracker = sajilo.HandTracking(sajilo)
+sajilo = sajilocv()
+htracker = sajilo.hand_tracking(sajilo)
 
 # allowing only single hand tracking    # it is actually set to one hand by default, nonetheless
 htracker.update_max_hands(1)
 
 # instantiating tools class     # we will need this to overlay an external image
-tools = sajilo.Tools(sajilo,htracker)
+tools = sajilo.tools(sajilo,htracker)
 
 while True:
     # start tracking hands
