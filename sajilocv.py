@@ -825,8 +825,8 @@ class sajilocv:
                 return None, None
         ''' function to find the landmark position ends here '''
 
-    ''' class for manipulating the controller '''
-    class controller:
+    ''' class for manipulating the microcontroller '''
+    class ucontroller:
         def __init__(self,outer_instance,port="COM0",baudrate=9600,timeout=None):
             self.outer = outer_instance
             self.port = port
