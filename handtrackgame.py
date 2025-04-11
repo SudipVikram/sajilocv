@@ -16,16 +16,16 @@ game3 = sajilopygame()
 game.window_title("Egg in the Basket")
 
 # creating characters for the game
-game.create_player(image_path="eggs/basket.png", org=(370, 400))
-game.create_object(image_path="eggs/egg.png", org=(100, 100))
-game.create_enemy(image_path="eggs/duck.png", org=(400, 10))
-game2.create_enemy(image_path="eggs/duck.png", org=(400, 10))
-game3.create_enemy(image_path="eggs/duck.png", org=(400, 10))
+game.create_player(image_path="examples/Hand Tracking Games/Catch the Eggs/assets/basket.png", org=(370, 400))
+game.create_object(image_path="examples/Hand Tracking Games/Catch the Eggs/assets/egg.png", org=(100, 100))
+game.create_enemy(image_path="examples/Hand Tracking Games/Catch the Eggs/assets/duck.png", org=(400, 10))
+game2.create_enemy(image_path="examples/Hand Tracking Games/Catch the Eggs/assets/duck.png", org=(400, 10))
+game3.create_enemy(image_path="examples/Hand Tracking Games/Catch the Eggs/assets/duck.png", org=(400, 10))
 
 # working with sounds
-game.load_sound(sound_path="eggs/background.wav", type="background", volume=0.5)
-game.load_sound(sound_path="eggs/egg-in-basket.wav", type="collision", volume=0.5)
-game.load_sound(sound_path="eggs/egg-cracking.mp3", type="death", volume=0.5)
+game.load_sound(sound_path="examples/Hand Tracking Games/Catch the Eggs/assets/background.wav", type="background", volume=0.5)
+game.load_sound(sound_path="examples/Hand Tracking Games/Catch the Eggs/assets/egg-in-basket.wav", type="collision", volume=0.5)
+game.load_sound(sound_path="examples/Hand Tracking Games/Catch the Eggs/assets/egg-cracking.mp3", type="death", volume=0.5)
 
 
 # max hands to be tracked
@@ -36,7 +36,7 @@ while True:
     htracker.circle_landmark(8,15)
 
     # loading for game
-    game.background_image(image_path="eggs/background.jpg")
+    game.background_image(image_path="examples/Hand Tracking Games/Catch the Eggs/assets/background.jpg")
     game.load_player()
     game.load_object()
     game.load_enemy()
